@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>TradingView Charting Library demo -- Mobile (white)</title>
+
+		<!-- Fix for iOS Safari zooming bug -->
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="charting_library/charting_library.min.js"></script>
+		<script type="text/javascript" src="charting_library/datafeed/udf/datafeed.js"></script>
+
+
+		<script type="text/javascript">
+
+			TradingView.onready(function()
+			{
+				var widget = new TradingView.widget({
+					fullscreen: true,
+					symbol: 'AAPL',
+					interval: 'D',
+					container_id: "tv_chart_container",
+					//	BEWARE: no trailing slash is expected in feed URL
+					<!-- datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"), -->
+					datafeed: new Datafeeds.UDFCompatibleDatafeed("http://localhost:5000"),
+					library_path: "charting_library/",
+					locale: "en",
+					//	Regression Trend-related functionality is not implemented yet, so it's hidden for a while
+					drawings_access: { type: 'black', tools: [ { name: "Regression Trend" } ] },
+					disabled_features: ["use_localstorage_for_settings"],
+					preset: "mobile"
+				});
+				
+				
+			})
+
+		</script>
+
+	</head>
+
+	<body style="margin:0px;">
+		<div id="tv_chart_container"></div>
+	</body>
+
+</html>
+
+<!-- datafeed -->
+<!-- wiki datafeed -->
+<!-- https://github.com/tradingview/charting_library/wiki/UDF -->
+
+<!-- ohclv -->
+<!-- https://demo_feed.tradingview.com/history?symbol=AAPL&resolution=15&from=1399939200&to=1523645809 -->
+<!-- response: -->
+<!-- {"t":.., "o":..., "h":..., "l":..., "c":..., "v":...} -->
+
+<!-- symbols -->
+<!-- https://demo_feed.tradingview.com/symbols?symbol=AAPL -->
+<!-- response:  -->
+<!-- {"name":"AAPL","exchange-traded":"NasdaqNM","exchange-listed":"NasdaqNM","timezone":"America/New_York","minmov":1,"minmov2":0,"pointvalue":1,"session":"0930-1630","has_intraday":false,"has_no_volume":false,"description":"Apple Inc.","type":"stock","supported_resolutions":["D","2D","3D","W","3W","M","6M"],"pricescale":100,"ticker":"AAPL"} -->
+
+
+
+
